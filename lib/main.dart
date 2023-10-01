@@ -17,6 +17,4 @@ void main() {
   }
 
   runApp(window);
-
-  // runApp(scope);
 }
