@@ -23,8 +23,20 @@ class ListPage extends ConsumerWidget {
               icon: const Icon(Icons.arrow_forward)),
         ],
       ),
-      body: const Center(
-        child: Text("一覧ページです"),
+      body: ListView(
+        children: [
+          Container(
+            color: Colors.green,
+            child: const Center(child: Text("一覧ページです")),
+          ),
+          Container(
+              color: Colors.amber,
+              child: Image.asset(
+                "assets/images/1.png",
+                height: 100,
+                width: 100,
+              )),
+        ],
       ),
     );
   }
