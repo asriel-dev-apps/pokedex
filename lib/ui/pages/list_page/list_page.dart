@@ -10,7 +10,7 @@ class ListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('一覧ページ'),
+        title: const Text('一覧ページifjdifa'),
         actions: [
           // 次へボタン
           IconButton(
