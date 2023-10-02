@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/ui/router/go_router.dart';
 
-class DetailPage extends ConsumerWidget {
+// 詳細ページ
+//
+// 静的なページを作ることができる`StatelessWidget`を継承
+class DetailPage extends StatelessWidget {
   const DetailPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('詳細ページ'),
@@ -17,8 +19,7 @@ class DetailPage extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          final router = ref.read(goRouterProvider);
-          router.pop();
+          goRouter.pop();
         },
       ),
     );

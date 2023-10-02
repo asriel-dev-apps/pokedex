@@ -1,41 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/ui/router/go_router.dart';
-import 'package:pokedex/ui/router/page_path.dart';
 
-class ListPage extends ConsumerWidget {
+// 一覧ページ
+//
+// 静的なページを作ることができる`StatelessWidget`を継承
+class ListPage extends StatelessWidget {
   const ListPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    // Scaffold: 下地、足場
     return Scaffold(
+      // 上部のBar（青い部分）
       appBar: AppBar(
         title: const Text('一覧ページ'),
         actions: [
           // 次へボタン
           IconButton(
               onPressed: () {
-                final router = ref.read(goRouterProvider);
-                router.pushNamed(
-                  PageId.detail.routeName,
+                goRouter.pushNamed(
+                  "detail",
                 );
               },
               icon: const Icon(Icons.arrow_forward)),
         ],
       ),
+      // 本体：ここにWidgetを組み合わせて、フロントを構成
       body: ListView(
         children: [
           Container(
-            color: Colors.green,
-            child: const Center(child: Text("一覧ページです")),
+            color: Colors.amber,
+            child: Image.asset(
+              "assets/images/1.png",
+              height: 100,
+              width: 100,
+            ),
           ),
           Container(
-              color: Colors.amber,
-              child: Image.asset(
-                "assets/images/1.png",
-                height: 100,
-                width: 100,
-              )),
+            color: Colors.cyan,
+            child: Image.asset(
+              "assets/images/2.png",
+              height: 100,
+              width: 100,
+            ),
+          ),
+          Container(
+            color: Colors.green,
+            child: Image.asset(
+              "assets/images/3.png",
+              height: 100,
+              width: 100,
+            ),
+          ),
+          const Center(
+            child: Text("フシギダネ進化ライン"),
+          ),
         ],
       ),
     );
