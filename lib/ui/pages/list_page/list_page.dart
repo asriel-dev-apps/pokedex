@@ -7,6 +7,28 @@ import 'package:pokedex/ui/router/go_router.dart';
 class ListPage extends StatelessWidget {
   const ListPage({super.key});
 
+  // ここにメソッドを定義可能
+  // 例： ねこかわいいCard Widget
+  // Widget customCard() {
+  //   return Card(
+  //     margin: const EdgeInsets.all(30),
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.circular(20),
+  //     ),
+  //     clipBehavior: Clip.antiAliasWithSaveLayer, // Cardと被ったWidgetをCardの形に保持する
+  //     child: Row(
+  //       children: <Widget>[
+  //         Image.network(
+  //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo7FLZVev8PvE4IK3-1evSjzC65pUQzCartw&usqp=CAU'),
+  //         const Spacer(),
+  //         const Text('ねこかわいい'),
+  //         const Spacer(),
+  //       ],
+  //     ),
+  //   );
+  // }
+
+  // build()の中でWidgetを組み合わせ、フロントを構築
   @override
   Widget build(BuildContext context) {
     // Scaffold: 下地、足場
@@ -55,6 +77,8 @@ class ListPage extends StatelessWidget {
           const Center(
             child: Text("フシギダネ進化ライン"),
           ),
+          // ねこかわいいCard Widget
+          // customCard(),
         ],
       ),
     );
