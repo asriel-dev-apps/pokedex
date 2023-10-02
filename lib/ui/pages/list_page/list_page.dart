@@ -8,35 +8,38 @@ class ListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // リストタイルを作成
+    final listTiles = [
+      ListTile(
+        tileColor: Color.fromARGB(255, 211, 62, 68),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        title: const Text('フシギダネ'),
+        leading: Image.asset("assets/images/1.png"),
+        trailing: Image.asset(
+          "assets/images/pokeball.png",
+          height: 40,
+          width: 40,
+        ),
+        onTap: () {
+          final router = ref.read(goRouterProvider);
+          router.pushNamed(
+            PageId.detail.routeName,
+          );
+        },
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('一覧ページ'),
-        actions: [
-          // 次へボタン
-          IconButton(
-              onPressed: () {
-                final router = ref.read(goRouterProvider);
-                router.pushNamed(
-                  PageId.detail.routeName,
-                );
-              },
-              icon: const Icon(Icons.arrow_forward)),
-        ],
       ),
-      body: ListView(
-        children: [
-          Container(
-            color: Colors.green,
-            child: const Center(child: Text("一覧ページです")),
-          ),
-          Container(
-              color: Colors.amber,
-              child: Image.asset(
-                "assets/images/1.png",
-                height: 100,
-                width: 100,
-              )),
-        ],
+      body: ListView.builder(
+        itemCount: listTiles.length,
+        itemBuilder: (BuildContext context, int i) {
+          return listTiles[i];
+        },
       ),
     );
   }
