@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/ui/router/go_router.dart';
-import 'package:pokedex/ui/theme/fonts.dart';
 
 /// アプリ本体
 class App extends ConsumerWidget {
@@ -17,9 +16,6 @@ class App extends ConsumerWidget {
       routeInformationParser: router.routeInformationParser, // GoRouter
       routeInformationProvider: router.routeInformationProvider, // GoRouter
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: BrandText.bodyS.fontFamily,
-      ),
     );
   }
 }
