@@ -21,5 +21,12 @@ final goRouter = GoRouter(
         return const DetailPage();
       },
     ),
+    GoRoute(
+      path: "/", // ルートパス
+      name: "default", // デフォルトのルート
+      builder: (context, state) {
+        return const  ListPage(); // 初期のページを指定
+      },
+    ),
   ],
 );
