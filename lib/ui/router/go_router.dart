@@ -4,6 +4,7 @@ import 'package:pokedex/ui/pages/list_page/list_page.dart';
 
 /// GoRouter
 final goRouter = GoRouter(
+  initialLocation: "/list",
   routes: [
     // 一覧
     GoRoute(
