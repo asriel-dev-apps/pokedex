@@ -4,6 +4,7 @@ import 'package:pokedex/ui/pages/list_page/list_page.dart';
 
 /// GoRouter
 final goRouter = GoRouter(
+  initialLocation: "/list",
   routes: [
     // 一覧
     GoRoute(
@@ -19,13 +20,6 @@ final goRouter = GoRouter(
       name: "detail",
       builder: (context, state) {
         return const DetailPage();
-      },
-    ),
-    GoRoute(
-      path: "/", // ルートパス
-      name: "default", // デフォルトのルート
-      builder: (context, state) {
-        return const  ListPage(); // 初期のページを指定
       },
     ),
   ],
