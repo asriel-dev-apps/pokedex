@@ -17,8 +17,11 @@ class PokedexSpritesInDetail with _$PokedexSpritesInDetail {
     /// 背面画像URL
     required String? backDefault,
 
+    /// その他の画像URL（公式画像など）
+    required Map<String, dynamic>? other,
+
     /// versionごとの画像URL
-    // required Map<String, dynamic>? versions,
+    required Map<String, dynamic>? versions,
   }) = _PokedexSpritesInDetail;
 
   // json形式で受け取るためのコードを生成するために記述

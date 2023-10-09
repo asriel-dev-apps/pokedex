@@ -20,7 +20,7 @@ class PokedexListTile extends ConsumerWidget {
   String idToString(int id) {
     String idStr = id.toString();
     final length = idStr.length;
-    // idが１桁もしくは２桁の場合、表示が３桁になるように00をつける
+    // idが１桁もしくは２桁の場合、表示が３桁になるように0をつける
     if (length == 1) {
       idStr = "00$idStr";
     } else if (length == 2) {
@@ -51,7 +51,8 @@ class PokedexListTile extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         final router = ref.read(goRouterProvider);
-        router.pushNamed(PageId.detail.routeName);
+        router.pushNamed(PageId.detail.routeName,
+            extra: {"id": id, "name": name});
       },
       child: Stack(
         alignment: Alignment.center,

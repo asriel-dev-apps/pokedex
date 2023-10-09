@@ -20,7 +20,7 @@ final goRouterProvider = Provider(
         path: PageId.detail.path,
         name: PageId.detail.routeName,
         builder: (context, state) {
-          return const DetailPage();
+          return DetailPage(idAndName: state.extra as Map<String, dynamic>);
         },
       ),
       GoRoute(
