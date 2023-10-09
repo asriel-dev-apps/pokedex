@@ -9,7 +9,7 @@ class ListPage extends StatelessWidget {
   const ListPage({super.key});
 
   // 一旦ここにfetchメソッドを定義
-  Future<List<Widget>> fetchPokeAPI() async {
+  Future<List<Widget>> fetchPokedexList() async {
     List<Widget> listTiles = [];
     try {
       // 全ポケモン名を取得できるAPIを叩く
@@ -49,7 +49,7 @@ class ListPage extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 246, 124, 86),
       body: FutureBuilder(
-        future: fetchPokeAPI(),
+        future: fetchPokedexList(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final listTiles = snapshot.data;
