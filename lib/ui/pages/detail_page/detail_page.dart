@@ -11,7 +11,7 @@ class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.idAndName});
 
   // 一旦ここにfetchメソッドを定義
-  Future<PokedexDeatail?> fetchDetailPokeAPI(int id) async {
+  Future<PokedexDeatail?> fetchPokedexDetail(int id) async {
     PokedexDeatail? pokedexDetail;
     try {
       final response =
@@ -64,7 +64,7 @@ class DetailPage extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 246, 124, 86),
       body: FutureBuilder(
-        future: fetchDetailPokeAPI(id),
+        future: fetchPokedexDetail(id),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final pokedexDetail = snapshot.data;
