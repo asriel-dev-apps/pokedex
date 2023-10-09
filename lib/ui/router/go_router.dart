@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex/ui/pages/detail_page/detail_page.dart';
+import 'package:pokedex/ui/pages/develop_page/develop_page.dart';
 import 'package:pokedex/ui/pages/list_page/list_page.dart';
 import 'package:pokedex/ui/router/page_path.dart';
 
@@ -20,6 +21,13 @@ final goRouterProvider = Provider(
         name: PageId.detail.routeName,
         builder: (context, state) {
           return const DetailPage();
+        },
+      ),
+      GoRoute(
+        path: PageId.develop.path,
+        name: PageId.develop.routeName,
+        builder: (context, state) {
+          return const DevelopPage();
         },
       ),
     ];

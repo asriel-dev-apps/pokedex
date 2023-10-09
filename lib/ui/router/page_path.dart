@@ -2,6 +2,7 @@
 enum PageId {
   list,
   detail,
+  develop,
 }
 
 /// 設計上の画面パス
@@ -12,6 +13,8 @@ extension PagePath on PageId {
         return '/list';
       case PageId.detail:
         return '/detail';
+      case PageId.develop:
+        return '/develop';
     }
   }
 }
@@ -24,6 +27,8 @@ extension PageName on PageId {
         return 'list';
       case PageId.detail:
         return 'detail';
+      case PageId.develop:
+        return 'develop';
     }
   }
 }
