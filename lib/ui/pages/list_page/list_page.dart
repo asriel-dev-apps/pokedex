@@ -12,7 +12,8 @@ class ListPage extends StatelessWidget {
   Future<List<Widget>> fetchPokeAPI() async {
     List<Widget> listTiles = [];
     try {
-      // BWまでしか動くアイコンがないため No.649 まで取得
+      // 全ポケモン名を取得できるAPIを叩く
+      // ただし、BWまでしかgifアイコンがないため今回は No.649 までとした
       final response = await http
           .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/?limit=649'));
 

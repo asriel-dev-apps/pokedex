@@ -11,6 +11,8 @@ _$PokedexSpritesInDetailImpl _$$PokedexSpritesInDetailImplFromJson(
     _$PokedexSpritesInDetailImpl(
       frontDefault: json['front_default'] as String?,
       backDefault: json['back_default'] as String?,
+      other: json['other'] as Map<String, dynamic>?,
+      versions: json['versions'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$PokedexSpritesInDetailImplToJson(
@@ -18,4 +20,6 @@ Map<String, dynamic> _$$PokedexSpritesInDetailImplToJson(
     <String, dynamic>{
       'front_default': instance.frontDefault,
       'back_default': instance.backDefault,
+      'other': instance.other,
+      'versions': instance.versions,
     };

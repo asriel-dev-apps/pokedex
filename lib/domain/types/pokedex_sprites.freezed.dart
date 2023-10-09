@@ -27,6 +27,12 @@ mixin _$PokedexSpritesInDetail {
   /// 背面画像URL
   String? get backDefault => throw _privateConstructorUsedError;
 
+  /// その他の画像URL（公式画像など）
+  Map<String, dynamic>? get other => throw _privateConstructorUsedError;
+
+  /// versionごとの画像URL
+  Map<String, dynamic>? get versions => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PokedexSpritesInDetailCopyWith<PokedexSpritesInDetail> get copyWith =>
@@ -39,7 +45,11 @@ abstract class $PokedexSpritesInDetailCopyWith<$Res> {
           $Res Function(PokedexSpritesInDetail) then) =
       _$PokedexSpritesInDetailCopyWithImpl<$Res, PokedexSpritesInDetail>;
   @useResult
-  $Res call({String? frontDefault, String? backDefault});
+  $Res call(
+      {String? frontDefault,
+      String? backDefault,
+      Map<String, dynamic>? other,
+      Map<String, dynamic>? versions});
 }
 
 /// @nodoc
@@ -58,6 +68,8 @@ class _$PokedexSpritesInDetailCopyWithImpl<$Res,
   $Res call({
     Object? frontDefault = freezed,
     Object? backDefault = freezed,
+    Object? other = freezed,
+    Object? versions = freezed,
   }) {
     return _then(_value.copyWith(
       frontDefault: freezed == frontDefault
@@ -68,6 +80,14 @@ class _$PokedexSpritesInDetailCopyWithImpl<$Res,
           ? _value.backDefault
           : backDefault // ignore: cast_nullable_to_non_nullable
               as String?,
+      other: freezed == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      versions: freezed == versions
+          ? _value.versions
+          : versions // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -81,7 +101,11 @@ abstract class _$$PokedexSpritesInDetailImplCopyWith<$Res>
       __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? frontDefault, String? backDefault});
+  $Res call(
+      {String? frontDefault,
+      String? backDefault,
+      Map<String, dynamic>? other,
+      Map<String, dynamic>? versions});
 }
 
 /// @nodoc
@@ -99,6 +123,8 @@ class __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>
   $Res call({
     Object? frontDefault = freezed,
     Object? backDefault = freezed,
+    Object? other = freezed,
+    Object? versions = freezed,
   }) {
     return _then(_$PokedexSpritesInDetailImpl(
       frontDefault: freezed == frontDefault
@@ -109,6 +135,14 @@ class __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>
           ? _value.backDefault
           : backDefault // ignore: cast_nullable_to_non_nullable
               as String?,
+      other: freezed == other
+          ? _value._other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      versions: freezed == versions
+          ? _value._versions
+          : versions // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -118,7 +152,12 @@ class __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
   const _$PokedexSpritesInDetailImpl(
-      {required this.frontDefault, required this.backDefault});
+      {required this.frontDefault,
+      required this.backDefault,
+      required final Map<String, dynamic>? other,
+      required final Map<String, dynamic>? versions})
+      : _other = other,
+        _versions = versions;
 
   factory _$PokedexSpritesInDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokedexSpritesInDetailImplFromJson(json);
@@ -131,9 +170,35 @@ class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
   @override
   final String? backDefault;
 
+  /// その他の画像URL（公式画像など）
+  final Map<String, dynamic>? _other;
+
+  /// その他の画像URL（公式画像など）
+  @override
+  Map<String, dynamic>? get other {
+    final value = _other;
+    if (value == null) return null;
+    if (_other is EqualUnmodifiableMapView) return _other;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  /// versionごとの画像URL
+  final Map<String, dynamic>? _versions;
+
+  /// versionごとの画像URL
+  @override
+  Map<String, dynamic>? get versions {
+    final value = _versions;
+    if (value == null) return null;
+    if (_versions is EqualUnmodifiableMapView) return _versions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @override
   String toString() {
-    return 'PokedexSpritesInDetail(frontDefault: $frontDefault, backDefault: $backDefault)';
+    return 'PokedexSpritesInDetail(frontDefault: $frontDefault, backDefault: $backDefault, other: $other, versions: $versions)';
   }
 
   @override
@@ -144,12 +209,19 @@ class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
             (identical(other.frontDefault, frontDefault) ||
                 other.frontDefault == frontDefault) &&
             (identical(other.backDefault, backDefault) ||
-                other.backDefault == backDefault));
+                other.backDefault == backDefault) &&
+            const DeepCollectionEquality().equals(other._other, this._other) &&
+            const DeepCollectionEquality().equals(other._versions, _versions));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, frontDefault, backDefault);
+  int get hashCode => Object.hash(
+      runtimeType,
+      frontDefault,
+      backDefault,
+      const DeepCollectionEquality().hash(_other),
+      const DeepCollectionEquality().hash(_versions));
 
   @JsonKey(ignore: true)
   @override
@@ -168,8 +240,11 @@ class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
 
 abstract class _PokedexSpritesInDetail implements PokedexSpritesInDetail {
   const factory _PokedexSpritesInDetail(
-      {required final String? frontDefault,
-      required final String? backDefault}) = _$PokedexSpritesInDetailImpl;
+          {required final String? frontDefault,
+          required final String? backDefault,
+          required final Map<String, dynamic>? other,
+          required final Map<String, dynamic>? versions}) =
+      _$PokedexSpritesInDetailImpl;
 
   factory _PokedexSpritesInDetail.fromJson(Map<String, dynamic> json) =
       _$PokedexSpritesInDetailImpl.fromJson;
@@ -182,6 +257,14 @@ abstract class _PokedexSpritesInDetail implements PokedexSpritesInDetail {
 
   /// 背面画像URL
   String? get backDefault;
+  @override
+
+  /// その他の画像URL（公式画像など）
+  Map<String, dynamic>? get other;
+  @override
+
+  /// versionごとの画像URL
+  Map<String, dynamic>? get versions;
   @override
   @JsonKey(ignore: true)
   _$$PokedexSpritesInDetailImplCopyWith<_$PokedexSpritesInDetailImpl>
