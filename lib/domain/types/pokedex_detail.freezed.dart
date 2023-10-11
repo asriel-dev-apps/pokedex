@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PokedexDeatail _$PokedexDeatailFromJson(Map<String, dynamic> json) {
-  return _PokedexDeatail.fromJson(json);
+PokedexDetail _$PokedexDetailFromJson(Map<String, dynamic> json) {
+  return _PokedexDetail.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PokedexDeatail {
+mixin _$PokedexDetail {
   /// ID
   int? get id => throw _privateConstructorUsedError;
 
@@ -31,15 +31,15 @@ mixin _$PokedexDeatail {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PokedexDeatailCopyWith<PokedexDeatail> get copyWith =>
+  $PokedexDetailCopyWith<PokedexDetail> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PokedexDeatailCopyWith<$Res> {
-  factory $PokedexDeatailCopyWith(
-          PokedexDeatail value, $Res Function(PokedexDeatail) then) =
-      _$PokedexDeatailCopyWithImpl<$Res, PokedexDeatail>;
+abstract class $PokedexDetailCopyWith<$Res> {
+  factory $PokedexDetailCopyWith(
+          PokedexDetail value, $Res Function(PokedexDetail) then) =
+      _$PokedexDetailCopyWithImpl<$Res, PokedexDetail>;
   @useResult
   $Res call({int? id, String? name, PokedexSpritesInDetail? sprites});
 
@@ -47,9 +47,9 @@ abstract class $PokedexDeatailCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PokedexDeatailCopyWithImpl<$Res, $Val extends PokedexDeatail>
-    implements $PokedexDeatailCopyWith<$Res> {
-  _$PokedexDeatailCopyWithImpl(this._value, this._then);
+class _$PokedexDetailCopyWithImpl<$Res, $Val extends PokedexDetail>
+    implements $PokedexDetailCopyWith<$Res> {
+  _$PokedexDetailCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,11 +93,11 @@ class _$PokedexDeatailCopyWithImpl<$Res, $Val extends PokedexDeatail>
 }
 
 /// @nodoc
-abstract class _$$PokedexDeatailImplCopyWith<$Res>
-    implements $PokedexDeatailCopyWith<$Res> {
-  factory _$$PokedexDeatailImplCopyWith(_$PokedexDeatailImpl value,
-          $Res Function(_$PokedexDeatailImpl) then) =
-      __$$PokedexDeatailImplCopyWithImpl<$Res>;
+abstract class _$$PokedexDetailImplCopyWith<$Res>
+    implements $PokedexDetailCopyWith<$Res> {
+  factory _$$PokedexDetailImplCopyWith(
+          _$PokedexDetailImpl value, $Res Function(_$PokedexDetailImpl) then) =
+      __$$PokedexDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? id, String? name, PokedexSpritesInDetail? sprites});
@@ -107,11 +107,11 @@ abstract class _$$PokedexDeatailImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PokedexDeatailImplCopyWithImpl<$Res>
-    extends _$PokedexDeatailCopyWithImpl<$Res, _$PokedexDeatailImpl>
-    implements _$$PokedexDeatailImplCopyWith<$Res> {
-  __$$PokedexDeatailImplCopyWithImpl(
-      _$PokedexDeatailImpl _value, $Res Function(_$PokedexDeatailImpl) _then)
+class __$$PokedexDetailImplCopyWithImpl<$Res>
+    extends _$PokedexDetailCopyWithImpl<$Res, _$PokedexDetailImpl>
+    implements _$$PokedexDetailImplCopyWith<$Res> {
+  __$$PokedexDetailImplCopyWithImpl(
+      _$PokedexDetailImpl _value, $Res Function(_$PokedexDetailImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -121,7 +121,7 @@ class __$$PokedexDeatailImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? sprites = freezed,
   }) {
-    return _then(_$PokedexDeatailImpl(
+    return _then(_$PokedexDetailImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -140,12 +140,12 @@ class __$$PokedexDeatailImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PokedexDeatailImpl implements _PokedexDeatail {
-  const _$PokedexDeatailImpl(
+class _$PokedexDetailImpl implements _PokedexDetail {
+  const _$PokedexDetailImpl(
       {required this.id, required this.name, required this.sprites});
 
-  factory _$PokedexDeatailImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PokedexDeatailImplFromJson(json);
+  factory _$PokedexDetailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokedexDetailImplFromJson(json);
 
   /// ID
   @override
@@ -161,14 +161,14 @@ class _$PokedexDeatailImpl implements _PokedexDeatail {
 
   @override
   String toString() {
-    return 'PokedexDeatail(id: $id, name: $name, sprites: $sprites)';
+    return 'PokedexDetail(id: $id, name: $name, sprites: $sprites)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PokedexDeatailImpl &&
+            other is _$PokedexDetailImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.sprites, sprites) || other.sprites == sprites));
@@ -181,26 +181,25 @@ class _$PokedexDeatailImpl implements _PokedexDeatail {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PokedexDeatailImplCopyWith<_$PokedexDeatailImpl> get copyWith =>
-      __$$PokedexDeatailImplCopyWithImpl<_$PokedexDeatailImpl>(
-          this, _$identity);
+  _$$PokedexDetailImplCopyWith<_$PokedexDetailImpl> get copyWith =>
+      __$$PokedexDetailImplCopyWithImpl<_$PokedexDetailImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PokedexDeatailImplToJson(
+    return _$$PokedexDetailImplToJson(
       this,
     );
   }
 }
 
-abstract class _PokedexDeatail implements PokedexDeatail {
-  const factory _PokedexDeatail(
+abstract class _PokedexDetail implements PokedexDetail {
+  const factory _PokedexDetail(
       {required final int? id,
       required final String? name,
-      required final PokedexSpritesInDetail? sprites}) = _$PokedexDeatailImpl;
+      required final PokedexSpritesInDetail? sprites}) = _$PokedexDetailImpl;
 
-  factory _PokedexDeatail.fromJson(Map<String, dynamic> json) =
-      _$PokedexDeatailImpl.fromJson;
+  factory _PokedexDetail.fromJson(Map<String, dynamic> json) =
+      _$PokedexDetailImpl.fromJson;
 
   @override
 
@@ -216,6 +215,6 @@ abstract class _PokedexDeatail implements PokedexDeatail {
   PokedexSpritesInDetail? get sprites;
   @override
   @JsonKey(ignore: true)
-  _$$PokedexDeatailImplCopyWith<_$PokedexDeatailImpl> get copyWith =>
+  _$$PokedexDetailImplCopyWith<_$PokedexDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

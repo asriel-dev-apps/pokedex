@@ -31,7 +31,7 @@ class DevelopPageState extends ConsumerState<DevelopPage> {
         final decodedBody = json.decode(jsonString);
 
         // PokemonInfoをリストで持つ
-        PokedexDeatail pokemon = PokedexDeatail.fromJson(decodedBody);
+        PokedexDetail pokemon = PokedexDetail.fromJson(decodedBody);
         debugPrint("🍎$pokemon");
         // リストタイルを作成
         // listTiles.add(CustomListTile(pokemon: pokemon));

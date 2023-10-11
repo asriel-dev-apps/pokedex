@@ -11,15 +11,15 @@ class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.idAndName});
 
   // 一旦ここにfetchメソッドを定義
-  Future<PokedexDeatail?> fetchPokedexDetail(int id) async {
-    PokedexDeatail? pokedexDetail;
+  Future<PokedexDetail?> fetchPokedexDetail(int id) async {
+    PokedexDetail? pokedexDetail;
     try {
       final response =
           await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$id'));
 
       final responseJson = jsonDecode(response.body);
 
-      pokedexDetail = PokedexDeatail.fromJson(responseJson);
+      pokedexDetail = PokedexDetail.fromJson(responseJson);
     } catch (e) {
       debugPrint("🐸$e");
     }
