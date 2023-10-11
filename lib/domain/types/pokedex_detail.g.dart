@@ -6,8 +6,8 @@ part of 'pokedex_detail.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PokedexDeatailImpl _$$PokedexDeatailImplFromJson(Map<String, dynamic> json) =>
-    _$PokedexDeatailImpl(
+_$PokedexDetailImpl _$$PokedexDetailImplFromJson(Map<String, dynamic> json) =>
+    _$PokedexDetailImpl(
       id: json['id'] as int?,
       name: json['name'] as String?,
       sprites: json['sprites'] == null
@@ -16,8 +16,7 @@ _$PokedexDeatailImpl _$$PokedexDeatailImplFromJson(Map<String, dynamic> json) =>
               json['sprites'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PokedexDeatailImplToJson(
-        _$PokedexDeatailImpl instance) =>
+Map<String, dynamic> _$$PokedexDetailImplToJson(_$PokedexDetailImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

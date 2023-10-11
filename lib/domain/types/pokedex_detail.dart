@@ -7,8 +7,8 @@ part 'pokedex_detail.g.dart';
 
 // モデル定義：ポケモンの情報
 @freezed
-class PokedexDeatail with _$PokedexDeatail {
-  const factory PokedexDeatail({
+class PokedexDetail with _$PokedexDetail {
+  const factory PokedexDetail({
     /// ID
     required int? id,
 
@@ -17,9 +17,9 @@ class PokedexDeatail with _$PokedexDeatail {
 
     /// 画像のURL
     required PokedexSpritesInDetail? sprites,
-  }) = _PokedexDeatail;
+  }) = _PokedexDetail;
 
   // json形式で受け取るためのコードを生成するために記述
-  factory PokedexDeatail.fromJson(Map<String, dynamic> json) =>
-      _$PokedexDeatailFromJson(json);
+  factory PokedexDetail.fromJson(Map<String, dynamic> json) =>
+      _$PokedexDetailFromJson(json);
 }
