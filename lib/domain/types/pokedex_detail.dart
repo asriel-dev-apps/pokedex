@@ -1,6 +1,6 @@
 // import 'package:my_app/domain/types/status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:pokedex/domain/types/pokedex_sprites.dart';
+import 'package:pokedex/domain/types/pokedex_detail_sprites.dart';
 
 part 'pokedex_detail.freezed.dart';
 part 'pokedex_detail.g.dart';

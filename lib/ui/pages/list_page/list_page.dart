@@ -1,47 +1,26 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/domain/repository/repository_interface.dart';
 import 'package:pokedex/domain/types/pokedex_list.dart';
 import 'package:pokedex/ui/widgets/pokedex_list_tile.dart';
 
-class ListPage extends StatelessWidget {
+class ListPage extends ConsumerWidget {
   const ListPage({super.key});
 
-  // 一旦ここにfetchメソッドを定義
-  Future<List<Widget>> fetchPokedexList() async {
-    List<Widget> listTiles = [];
-    try {
-      // 全ポケモン名を取得できるAPIを叩く
-      // ただし、BWまでしかgifアイコンがないため今回は No.649 までとした
-      final response = await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/?limit=649'));
+  // TODO: 煩雑になっているため直す
+  int substringId(String url) {
+    List urlList = url.split("/");
+    urlList.removeWhere((e) => e == "v2");
+    String str = urlList.join("/");
 
-      final responseJson = jsonDecode(response.body);
-
-      final pokemonDataList = PokedexList.fromJson(responseJson);
-
-      final results = pokemonDataList.results;
-
-      final resultsMap = results!.asMap();
-
-      listTiles = resultsMap.entries
-          .map(
-            (entry) => PokedexListTile(
-              id: entry.key + 1,
-              result: entry.value,
-            ),
-          )
-          .toList();
-    } catch (e) {
-      debugPrint("🐸$e");
-    }
-
-    return listTiles;
+    final match = RegExp(r'(\d+)').stringMatch(str);
+    final id = int.parse(match!);
+    return id;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pokedexList = ref.watch(pokedexListRepositoryProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -49,18 +28,32 @@ class ListPage extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 246, 124, 86),
       body: FutureBuilder(
-        future: fetchPokedexList(),
+        future: pokedexList.fetch(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final listTiles = snapshot.data;
-            return Scrollbar(
-              child: ListView.builder(
-                itemCount: listTiles!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return listTiles[index];
-                },
-              ),
-            );
+            final pokedexList = snapshot.data as PokedexList;
+            final results = pokedexList.results;
+            if (results != null && results.isNotEmpty) {
+              List<PokedexListTile> listTiles = results
+                  .map(
+                    (e) => PokedexListTile(
+                      id: substringId(e!.url),
+                      result: e,
+                    ),
+                  )
+                  .toList();
+
+              return Scrollbar(
+                child: ListView.builder(
+                  itemCount: listTiles.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return listTiles[index];
+                  },
+                ),
+              );
+            } else {
+              return Container();
+            }
           } else {
             return const Center(child: CircularProgressIndicator());
           }

@@ -1,8 +1,8 @@
 // import 'package:my_app/domain/types/status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'pokedex_sprites.freezed.dart';
-part 'pokedex_sprites.g.dart';
+part 'pokedex_detail_sprites.freezed.dart';
+part 'pokedex_detail_sprites.g.dart';
 
 // モデル定義：ポケモンの情報
 @freezed

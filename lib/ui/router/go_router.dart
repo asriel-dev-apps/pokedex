@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex/ui/pages/detail_page/detail_page.dart';
@@ -19,8 +20,13 @@ final goRouterProvider = Provider(
       GoRoute(
         path: PageId.detail.path,
         name: PageId.detail.routeName,
-        builder: (context, state) {
-          return DetailPage(idAndName: state.extra as Map<String, dynamic>);
+        pageBuilder: (context, state) {
+          // 一覧のリストタイルタップ時に、{"id": id, "name": name} を渡す
+          final idAndName = state.extra as Map<String, dynamic>;
+          return MaterialPage(
+            fullscreenDialog: true,
+            child: DetailPage(idAndName: idAndName),
+          );
         },
       ),
       GoRoute(
