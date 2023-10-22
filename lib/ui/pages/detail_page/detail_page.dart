@@ -84,7 +84,46 @@ class DetailPage extends StatelessWidget {
                       ["front_default"],
                   height: height / 4,
                   width: width,
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Color.fromARGB(255, 214, 214, 214),
+                    height: height / 15,
+                    width: width,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0,
+                      vertical: 10.0,
+                    ),
+                    child: Center(child: Text("pokemon")),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Color.fromARGB(255, 214, 214, 214),
+                    height: height / 15,
+                    width: width,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0,
+                      vertical: 10.0,
+                    ),
+                    child: Center(child: Text("pokemon")),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Color.fromARGB(255, 214, 214, 214),
+                    height: height / 15,
+                    width: width,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0,
+                      vertical: 10.0,
+                    ),
+                    child: Center(child: Text("pokemon")),
+                  ),
+                ),
               ],
             );
           } else {

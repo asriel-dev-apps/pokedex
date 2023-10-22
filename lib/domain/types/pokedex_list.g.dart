@@ -10,9 +10,9 @@ _$PokedexListImpl _$$PokedexListImplFromJson(Map<String, dynamic> json) =>
     _$PokedexListImpl(
       count: json['count'] as int?,
       results: (json['results'] as List<dynamic>?)
-          ?.map((e) => (e as Map<String, dynamic>?)?.map(
-                (k, e) => MapEntry(k, e as String),
-              ))
+          ?.map((e) => e == null
+              ? null
+              : PokedexListResults.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

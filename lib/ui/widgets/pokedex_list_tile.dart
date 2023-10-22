@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/domain/types/pokedex_list_results.dart';
 import 'package:pokedex/ui/router/go_router.dart';
 import 'package:pokedex/ui/router/page_path.dart';
 
 class PokedexListTile extends ConsumerWidget {
   // ポケモンのid（図鑑No.）
   final int id;
+
   // PokedexListのvalue -> {"results": {"name": "hoge1", "url": "https　://fuga1"}, ...}
   // {"name": "hoge1", "url": "https　://fuga1"} を resultと置いた
-  final Map<String, String>? result;
+  final PokedexListResults result;
 
   const PokedexListTile({
     super.key,
@@ -31,23 +33,23 @@ class PokedexListTile extends ConsumerWidget {
   }
 
   // result["name"]へバリデーション
-  String validateName(Map<String, String>? result) {
-    String name = "---";
-    // result自体 or result["name"]がnullの場合"---"を返す
-    if (result == null || result["name"] == null) return name;
-    // ポケモン名をnameへ格納
-    name = result["name"]!;
-    return name;
-  }
+  // String validateName(Map<String, String>? result) {
+  //   String name = "---";
+  //   // result自体 or result["name"]がnullの場合"---"を返す
+  //   if (result == null || result["name"] == null) return name;
+  //   // ポケモン名をnameへ格納
+  //   name = result["name"]!;
+  //   return name;
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ListTilwの高さ
+    // ListTileの高さ
     const height = 60.0;
     // 図鑑No.
-    final number = idToString(id);
+    final String number = idToString(id);
     // ポケモン名
-    final name = validateName(result);
+    final name = result.name;
     return GestureDetector(
       onTap: () {
         final router = ref.read(goRouterProvider);

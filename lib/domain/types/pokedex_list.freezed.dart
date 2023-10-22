@@ -24,7 +24,7 @@ mixin _$PokedexList {
   int? get count => throw _privateConstructorUsedError;
 
   /// ポケモン名と詳細情報のURlをもつMap
-  List<Map<String, String>?>? get results => throw _privateConstructorUsedError;
+  List<PokedexListResults?>? get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,7 @@ abstract class $PokedexListCopyWith<$Res> {
           PokedexList value, $Res Function(PokedexList) then) =
       _$PokedexListCopyWithImpl<$Res, PokedexList>;
   @useResult
-  $Res call({int? count, List<Map<String, String>?>? results});
+  $Res call({int? count, List<PokedexListResults?>? results});
 }
 
 /// @nodoc
@@ -65,7 +65,7 @@ class _$PokedexListCopyWithImpl<$Res, $Val extends PokedexList>
       results: freezed == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, String>?>?,
+              as List<PokedexListResults?>?,
     ) as $Val);
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$PokedexListImplCopyWith<$Res>
       __$$PokedexListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? count, List<Map<String, String>?>? results});
+  $Res call({int? count, List<PokedexListResults?>? results});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$PokedexListImplCopyWithImpl<$Res>
       results: freezed == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, String>?>?,
+              as List<PokedexListResults?>?,
     ));
   }
 }
@@ -112,7 +112,7 @@ class __$$PokedexListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PokedexListImpl implements _PokedexList {
   const _$PokedexListImpl(
-      {required this.count, required final List<Map<String, String>?>? results})
+      {required this.count, required final List<PokedexListResults?>? results})
       : _results = results;
 
   factory _$PokedexListImpl.fromJson(Map<String, dynamic> json) =>
@@ -123,11 +123,11 @@ class _$PokedexListImpl implements _PokedexList {
   final int? count;
 
   /// ポケモン名と詳細情報のURlをもつMap
-  final List<Map<String, String>?>? _results;
+  final List<PokedexListResults?>? _results;
 
   /// ポケモン名と詳細情報のURlをもつMap
   @override
-  List<Map<String, String>?>? get results {
+  List<PokedexListResults?>? get results {
     final value = _results;
     if (value == null) return null;
     if (_results is EqualUnmodifiableListView) return _results;
@@ -171,7 +171,7 @@ class _$PokedexListImpl implements _PokedexList {
 abstract class _PokedexList implements PokedexList {
   const factory _PokedexList(
       {required final int? count,
-      required final List<Map<String, String>?>? results}) = _$PokedexListImpl;
+      required final List<PokedexListResults?>? results}) = _$PokedexListImpl;
 
   factory _PokedexList.fromJson(Map<String, dynamic> json) =
       _$PokedexListImpl.fromJson;
@@ -183,7 +183,7 @@ abstract class _PokedexList implements PokedexList {
   @override
 
   /// ポケモン名と詳細情報のURlをもつMap
-  List<Map<String, String>?>? get results;
+  List<PokedexListResults?>? get results;
   @override
   @JsonKey(ignore: true)
   _$$PokedexListImplCopyWith<_$PokedexListImpl> get copyWith =>

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pokedex/domain/types/pokedex_list_results.dart';
 
 part 'pokedex_list.freezed.dart';
 part 'pokedex_list.g.dart';
@@ -11,7 +12,7 @@ class PokedexList with _$PokedexList {
     required int? count,
 
     /// ポケモン名と詳細情報のURlをもつMap
-    required List<Map<String, String>?>? results,
+    required List<PokedexListResults?>? results,
   }) = _PokedexList;
 
   // json形式で受け取るためのコードを生成するために記述

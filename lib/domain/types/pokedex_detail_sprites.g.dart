@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokedex_sprites.dart';
+part of 'pokedex_detail_sprites.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
