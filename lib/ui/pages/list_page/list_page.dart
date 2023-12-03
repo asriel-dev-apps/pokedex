@@ -4,12 +4,19 @@ import 'package:pokedex/application/state/pokedex_list_provider.dart';
 import 'package:pokedex/application/state/searched_pokedex_list_provider.dart';
 import 'package:pokedex/ui/widgets/pokedex_list_tile.dart';
 
-class ListPage extends ConsumerWidget {
+class ListPage extends ConsumerStatefulWidget {
   const ListPage({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _ListPageState();
+}
+
+class _ListPageState extends ConsumerState<ListPage> {
+  final TextEditingController _textEditingController = TextEditingController();
 
   // TODO: v2の2にヒットしてしまうため、削除しておことでid（（数字）を取得しているが、汎用性が低いため、修正
   int substringId(String url) {
-    List urlList = url.split("/");
+    List<String> urlList = url.split("/");
     urlList.removeWhere((e) => e == "v2");
     String str = urlList.join("/");
 
@@ -19,22 +26,32 @@ class ListPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController textEditingController = TextEditingController();
-    final pokedexListTiles = ref.watch(pokedexListProvider).when(
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textEditingController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget pokedexListTiles = ref.watch(pokedexListProvider).when(
           data: (data) {
-            final listTiles = data
+            final List<PokedexListTile> listTiles = data
                 .map((e) => PokedexListTile(id: substringId(e!.url), result: e))
                 .toList();
-            final sortedListTiles =
+            final List<PokedexListTile?> sortedListTiles =
                 ref.watch(sortedPokedexListTilesProvider(listTiles));
             return ListView.builder(
-                itemCount: listTiles.length,
+                itemCount: sortedListTiles.length,
                 itemBuilder: (BuildContext context, int index) {
                   return sortedListTiles[index];
                 });
           },
-          error: (err, _) => Text(''),
+          error: (err, _) => const Text('ポケモンの取得に失敗しました'),
           loading: () => const Center(child: CircularProgressIndicator()),
         );
     return Scaffold(
@@ -97,7 +114,11 @@ class ListPage extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                controller: textEditingController,
+                controller: _textEditingController,
+                // 検索ボックスに入力されると、fuzzySearchRegExpProviderの状態が更新
+                onChanged: (value) => ref
+                    .read(fuzzySearchStringProvider.notifier)
+                    .update((state) => _textEditingController.text),
               ),
             ),
             Expanded(child: pokedexListTiles),

@@ -8,23 +8,17 @@ final sortedPokedexListTilesProvider =
   // Original List<PokedexListTile> を deep copy
   final List<PokedexListTile> listTiles = [...pokedexListTiles];
 
-  // ファジーサーチにヒットしたリストタイルを返す
-  final String fuzzySearchString = ref.watch(fuzzySearchStringProvider);
+  /// ファジーサーチにヒットしたリストタイルを返す
+  // 検索結果を格納するリスト
   List<PokedexListTile> fuzzySearchedListTiles = [];
-  // 入力されていない場合は全て返す
-  if (fuzzySearchString.isEmpty) {
-    fuzzySearchedListTiles = listTiles;
-  }
-  // ファジーサーチ実行
-  else {
-    // 正規表現（大文字/小文字を区別しない）
-    final regNotSensitive = RegExp(fuzzySearchString, caseSensitive: false);
-    fuzzySearchedListTiles = listTiles
-        .where((e) => e.result.name.contains(regNotSensitive))
-        .toList();
-  }
+  // 入力された文字列
+  final String fuzzySearchString = ref.watch(fuzzySearchStringProvider);
+  // 正規表現（大文字/小文字を区別しない）
+  final regNotSensitive = RegExp(fuzzySearchString, caseSensitive: false);
+  fuzzySearchedListTiles =
+      listTiles.where((e) => e.result.name.contains(regNotSensitive)).toList();
 
-  // ファジーサーチされたリストタイルを、現在のソートタイプによってソートして返す
+  /// ファジーサーチにヒットしたList<PokedexListTile>をソートして返す
   final sortType = ref.watch(pokedexListSortTypeProvider);
   switch (sortType) {
     case SortType.idASC:
