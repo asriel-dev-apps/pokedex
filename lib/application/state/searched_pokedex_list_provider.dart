@@ -12,6 +12,7 @@ final sortedPokedexListTilesProvider =
   // 検索結果を格納するリスト
   List<PokedexListTile> fuzzySearchedListTiles = [];
   // 入力された文字列
+  // 空文字の場合：contains()メソッドは常にTrueとなり、全ての要素が返る
   final String fuzzySearchString = ref.watch(fuzzySearchStringProvider);
   // 正規表現（大文字/小文字を区別しない）
   final regNotSensitive = RegExp(fuzzySearchString, caseSensitive: false);
