@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/ui/router/app.dart';
+import 'package:pokedex/presentation/ui/router/app.dart';
 
 void main() {
   const app = App();
