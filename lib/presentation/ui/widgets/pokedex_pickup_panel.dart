@@ -35,8 +35,44 @@ class PokedexPickupPanel extends StatelessWidget {
     return "No.$idStr";
   }
 
-  String typeMatchBgSet(String type) {
-    return type;
+  List<String> typeMatchBgSet(String type) {
+    // タイプを/で分割
+    var types = type.split('/');
+    // 各タイプに対応する画像のパスをリストとして返す
+    print(types);
+    return types.map((type) {
+      switch (type) {
+        case 'Fire':
+          return 'assets/images/fire.png';
+        case 'Water':
+          return 'assets/images/water.png';
+        case 'Electric':
+          return 'assets/images/electric.png';
+        case 'Bug':
+          return 'assets/images/bug.png';
+        case 'Rock':
+          return 'assets/images/rock.png';
+        case 'Dark':
+          return 'assets/images/dark.png';
+        case 'Poison':
+          return 'assets/images/poison.png';
+        case 'Fairy':
+          return 'assets/images/fairy.png';
+        case 'Ground':
+          return 'assets/images/ground.png';
+        case 'Normal':
+          return 'assets/images/normal.png';
+        case 'Flying':
+          return 'assets/images/flying.png';
+        case 'Ghost':
+          return 'assets/images/ghost.png';
+        case 'Grass':
+          return 'assets/images/grass.png';
+        // 他のタイプも同様に追加...
+        default:
+          return 'assets/images/fire.png'; // デフォルトの画像
+      }
+    }).toList();
   }
 
   @override
@@ -84,7 +120,12 @@ class PokedexPickupPanel extends StatelessWidget {
                   TableRow(
                     children: <Widget>[
                       const Text('タイプ'),
-                      Text(type),
+                      Row(
+                        children: typeMatchBgSet(type)
+                            .map((path) => Expanded(
+                                child: Image.asset(path, fit: BoxFit.contain)))
+                            .toList(), // 画像を表示
+                      ),
                     ],
                   ),
                   TableRow(
