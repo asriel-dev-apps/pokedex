@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pokedex/domain/types/pokemon.dart';
 import 'package:pokedex/ui/pages/detail_page/detail_page.dart';
 import 'package:pokedex/ui/pages/develop_page/develop_page.dart';
 import 'package:pokedex/ui/pages/list_page/list_page.dart';
@@ -21,11 +22,12 @@ final goRouterProvider = Provider(
         path: PageId.detail.path,
         name: PageId.detail.routeName,
         pageBuilder: (context, state) {
-          // 一覧のリストタイルタップ時に、{"id": id, "name": name} を渡す
-          final idAndName = state.extra as Map<String, dynamic>;
+          final pokemon = state.extra as Pokemon;
           return MaterialPage(
             fullscreenDialog: true,
-            child: DetailPage(idAndName: idAndName),
+            child: DetailPage(
+              pokemon: pokemon,
+            ),
           );
         },
       ),
@@ -39,6 +41,7 @@ final goRouterProvider = Provider(
     ];
 
     return GoRouter(
+      // TODO: listに直す
       initialLocation: PageId.list.path,
       debugLogDiagnostics: false,
       routes: routes,

@@ -1,5 +1,5 @@
-abstract class ApiInterface<T> {
-  Future<T> get();
+abstract class ApiClientInterface<T> {
+  Future<Map<String, dynamic>> fetch();
 
   String getBaseUrl();
 

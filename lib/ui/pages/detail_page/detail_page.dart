@@ -1,53 +1,30 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:pokedex/domain/types/pokedex_detail.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/application/usecases/pokedex_detail_provider.dart';
+import 'package:pokedex/domain/types/pokemon.dart';
+import 'package:pokedex/infrastructure/device/device_size_provider.dart';
 
-class DetailPage extends StatelessWidget {
-  // {"id": id, "name": "name"}を遷移時に受け取る
-  final Map<String, dynamic> idAndName;
-
-  const DetailPage({super.key, required this.idAndName});
-
-  // 一旦ここにfetchメソッドを定義
-  Future<PokedexDetail?> fetchPokedexDetail(int id) async {
-    PokedexDetail? pokedexDetail;
-    try {
-      final response =
-          await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$id'));
-
-      final responseJson = jsonDecode(response.body);
-
-      pokedexDetail = PokedexDetail.fromJson(responseJson);
-    } catch (e) {
-      debugPrint("🐸$e");
-    }
-
-    return pokedexDetail;
-  }
-
-  // idを文字列に変換
-  String idToString(int id) {
-    String idStr = id.toString();
-    final length = idStr.length;
-    // idが１桁もしくは２桁の場合、表示が３桁になるように0をつける
-    if (length == 1) {
-      idStr = "00$idStr";
-    } else if (length == 2) {
-      idStr = "0$idStr";
-    }
-    // No.oooのような文字列を返す
-    return "No.$idStr";
-  }
+class DetailPage extends ConsumerWidget {
+  final Pokemon pokemon;
+  const DetailPage({
+    super.key,
+    required this.pokemon,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    final int id = idAndName["id"];
-    final String number = idToString(id);
-    final String name = idAndName["name"];
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+  Widget build(BuildContext context, WidgetRef ref) {
+    // 詳細情報
+    final Pokemon? detailData =
+        ref.watch(pokemonDetailDataProvider(pokemon)).when(
+              data: (data) => data,
+              error: (err, _) => Pokemon(),
+              loading: () => Pokemon(),
+            );
+
+    // Layout settings
+    final size = ref.watch(deviceSizeProvider(context));
+    final height = size.height;
+    final width = size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -56,80 +33,75 @@ class DetailPage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(number),
+            Text((detailData?.id ?? '---').toString()),
             const SizedBox(width: 10),
-            Text(name),
+            Text(pokemon.name),
           ],
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 246, 124, 86),
-      body: FutureBuilder(
-        future: fetchPokedexDetail(id),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final pokedexDetail = snapshot.data;
-
-            if (pokedexDetail == null) {
-              return const Center(
-                  child: Text(
-                "詳細情報の取得に失敗しました",
-                style: TextStyle(color: Colors.white),
-              ));
-            }
-
-            return Column(
-              children: [
-                Image.network(
-                  pokedexDetail.sprites!.other!["official-artwork"]
+      body: Column(
+        children: [
+          detailData != null &&
+                  detailData.images != null &&
+                  (detailData.images!.other!["official-artwork"]
+                              ["front_default"] ??
+                          '')
+                      .isNotEmpty
+              ? Image.network(
+                  detailData.images!.other!["official-artwork"]
                       ["front_default"],
                   height: height / 4,
                   width: width,
+                )
+              : Image.network(
+                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${detailData!.id}.png",
+                  height: height / 4,
+                  width: width,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Color.fromARGB(255, 214, 214, 214),
-                    height: height / 15,
-                    width: width,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 10.0,
-                    ),
-                    child: Center(child: Text("pokemon")),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Color.fromARGB(255, 214, 214, 214),
-                    height: height / 15,
-                    width: width,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 10.0,
-                    ),
-                    child: Center(child: Text("pokemon")),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Color.fromARGB(255, 214, 214, 214),
-                    height: height / 15,
-                    width: width,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 10.0,
-                    ),
-                    child: Center(child: Text("pokemon")),
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+          // : Image.asset(
+          //     "assets/images/pikachu_silhouette.jpg",
+          //   ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              color: Color.fromARGB(255, 214, 214, 214),
+              height: height / 15,
+              width: width,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10.0,
+                vertical: 10.0,
+              ),
+              child: Center(child: Text("pokemon")),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              color: Color.fromARGB(255, 214, 214, 214),
+              height: height / 15,
+              width: width,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10.0,
+                vertical: 10.0,
+              ),
+              child: Center(child: Text("pokemon")),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              color: Color.fromARGB(255, 214, 214, 214),
+              height: height / 15,
+              width: width,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10.0,
+                vertical: 10.0,
+              ),
+              child: Center(child: Text("pokemon")),
+            ),
+          ),
+        ],
       ),
     );
   }
