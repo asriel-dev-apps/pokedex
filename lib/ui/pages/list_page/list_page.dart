@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/application/state/pokedex_list_provider.dart';
-import 'package:pokedex/application/state/searched_pokedex_list_provider.dart';
+import 'package:pokedex/application/usecases/pokedex_provider.dart';
+import 'package:pokedex/application/usecases/searched_pokedex_provider.dart';
+import 'package:pokedex/domain/types/pokemon.dart';
 import 'package:pokedex/ui/widgets/pokedex_list_tile.dart';
 
 class ListPage extends ConsumerStatefulWidget {
   const ListPage({super.key});
-
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ListPageState();
 }
 
 class _ListPageState extends ConsumerState<ListPage> {
   final TextEditingController _textEditingController = TextEditingController();
-
-  // TODO: v2の2にヒットしてしまうため、削除しておことでid（（数字）を取得しているが、汎用性が低いため、修正
-  int substringId(String url) {
-    List<String> urlList = url.split("/");
-    urlList.removeWhere((e) => e == "v2");
-    String str = urlList.join("/");
-
-    final match = RegExp(r'(\d+)').stringMatch(str);
-    final id = int.parse(match!);
-    return id;
-  }
 
   @override
   void initState() {
@@ -38,57 +27,54 @@ class _ListPageState extends ConsumerState<ListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Widget pokedexListTiles = ref.watch(pokedexListProvider).when(
+    final Widget pokedexTiles = ref.watch(pokedexProvider).when(
           data: (data) {
-            final List<PokedexListTile> listTiles = data
-                .map((e) => PokedexListTile(id: substringId(e!.url), result: e))
-                .toList();
-            final List<PokedexListTile?> sortedListTiles =
-                ref.watch(sortedPokedexListTilesProvider(listTiles));
+            final List<Pokemon?> sortedPokedex =
+                ref.watch(extractPokemonsProvider(data));
+
+            if (sortedPokedex.isEmpty) return ListView();
+
+            final List<PokedexListTile> listTiles =
+                sortedPokedex.map((e) => PokedexListTile(pokemon: e!)).toList();
             return ListView.builder(
-                itemCount: sortedListTiles.length,
+                itemCount: listTiles.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return sortedListTiles[index];
+                  return listTiles[index];
                 });
           },
           error: (err, _) => const Text('ポケモンの取得に失敗しました'),
           loading: () => const Center(child: CircularProgressIndicator()),
         );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Center(child: Text('Pokedex')),
         actions: [
           DropdownButton(
-              iconEnabledColor: Colors.white,
-              items: const [
-                DropdownMenuItem(
-                  value: SortType.idASC,
-                  child: Text('ID昇順'),
-                  // child: Icon(
-                  //   Icons.sort,
-                  //   color: Colors.black,
-                  // ),
-                ),
-                DropdownMenuItem(
-                  value: SortType.idDESC,
-                  child: Text('ID降順'),
-                ),
-                DropdownMenuItem(
-                  value: SortType.nameASC,
-                  child: Text('名前昇順'),
-                  // child: Icon(
-                  //   Icons.sort_by_alpha,
-                  //   color: Colors.black,
-                  // ),
-                ),
-                DropdownMenuItem(
-                  value: SortType.nameDESC,
-                  child: Text('名前降順'),
-                ),
-              ],
-              onChanged: (value) =>
-                  ref.read(pokedexListSortTypeProvider.notifier).state = value!)
+            iconEnabledColor: Colors.white,
+            items: const [
+              DropdownMenuItem(
+                value: SortType.idASC,
+                child: Text('ID昇順'),
+              ),
+              DropdownMenuItem(
+                value: SortType.idDESC,
+                child: Text('ID降順'),
+              ),
+              DropdownMenuItem(
+                value: SortType.nameASC,
+                child: Text('名前昇順'),
+              ),
+              DropdownMenuItem(
+                value: SortType.nameDESC,
+                child: Text('名前降順'),
+              ),
+            ],
+            onChanged: (value) => ref
+                .read(pokedexSrcSortTypeProvider.notifier)
+                .update((state) => value!),
+          )
         ],
       ),
       backgroundColor: const Color.fromARGB(255, 246, 124, 86),
@@ -121,7 +107,7 @@ class _ListPageState extends ConsumerState<ListPage> {
                     .update((state) => _textEditingController.text),
               ),
             ),
-            Expanded(child: pokedexListTiles),
+            Expanded(child: pokedexTiles),
           ],
         ),
       ),

@@ -21,6 +21,7 @@ class BrandText {
   static const titleS = TextStyle(
     fontSize: RawSize.p20,
     fontFamily: BrandFont.general,
+    fontWeight: FontWeight.bold,
   );
   static const bodyL = TextStyle(
     fontSize: RawSize.p18,
@@ -31,7 +32,7 @@ class BrandText {
     fontFamily: BrandFont.general,
   );
   static const bodyS = TextStyle(
-    fontSize: RawSize.p16,
+    fontSize: RawSize.p14,
     fontFamily: BrandFont.general,
   );
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'pokedex_detail_sprites.dart';
+part of 'pokemon_images.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PokedexSpritesInDetail _$PokedexSpritesInDetailFromJson(
-    Map<String, dynamic> json) {
-  return _PokedexSpritesInDetail.fromJson(json);
+PokemonImages _$PokemonImagesFromJson(Map<String, dynamic> json) {
+  return _PokemonImages.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PokedexSpritesInDetail {
+mixin _$PokemonImages {
   /// 正面画像URL
   String? get frontDefault => throw _privateConstructorUsedError;
 
@@ -35,15 +34,15 @@ mixin _$PokedexSpritesInDetail {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PokedexSpritesInDetailCopyWith<PokedexSpritesInDetail> get copyWith =>
+  $PokemonImagesCopyWith<PokemonImages> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PokedexSpritesInDetailCopyWith<$Res> {
-  factory $PokedexSpritesInDetailCopyWith(PokedexSpritesInDetail value,
-          $Res Function(PokedexSpritesInDetail) then) =
-      _$PokedexSpritesInDetailCopyWithImpl<$Res, PokedexSpritesInDetail>;
+abstract class $PokemonImagesCopyWith<$Res> {
+  factory $PokemonImagesCopyWith(
+          PokemonImages value, $Res Function(PokemonImages) then) =
+      _$PokemonImagesCopyWithImpl<$Res, PokemonImages>;
   @useResult
   $Res call(
       {String? frontDefault,
@@ -53,10 +52,9 @@ abstract class $PokedexSpritesInDetailCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PokedexSpritesInDetailCopyWithImpl<$Res,
-        $Val extends PokedexSpritesInDetail>
-    implements $PokedexSpritesInDetailCopyWith<$Res> {
-  _$PokedexSpritesInDetailCopyWithImpl(this._value, this._then);
+class _$PokemonImagesCopyWithImpl<$Res, $Val extends PokemonImages>
+    implements $PokemonImagesCopyWith<$Res> {
+  _$PokemonImagesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,12 +91,11 @@ class _$PokedexSpritesInDetailCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PokedexSpritesInDetailImplCopyWith<$Res>
-    implements $PokedexSpritesInDetailCopyWith<$Res> {
-  factory _$$PokedexSpritesInDetailImplCopyWith(
-          _$PokedexSpritesInDetailImpl value,
-          $Res Function(_$PokedexSpritesInDetailImpl) then) =
-      __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>;
+abstract class _$$PokemonImagesImplCopyWith<$Res>
+    implements $PokemonImagesCopyWith<$Res> {
+  factory _$$PokemonImagesImplCopyWith(
+          _$PokemonImagesImpl value, $Res Function(_$PokemonImagesImpl) then) =
+      __$$PokemonImagesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -109,13 +106,11 @@ abstract class _$$PokedexSpritesInDetailImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>
-    extends _$PokedexSpritesInDetailCopyWithImpl<$Res,
-        _$PokedexSpritesInDetailImpl>
-    implements _$$PokedexSpritesInDetailImplCopyWith<$Res> {
-  __$$PokedexSpritesInDetailImplCopyWithImpl(
-      _$PokedexSpritesInDetailImpl _value,
-      $Res Function(_$PokedexSpritesInDetailImpl) _then)
+class __$$PokemonImagesImplCopyWithImpl<$Res>
+    extends _$PokemonImagesCopyWithImpl<$Res, _$PokemonImagesImpl>
+    implements _$$PokemonImagesImplCopyWith<$Res> {
+  __$$PokemonImagesImplCopyWithImpl(
+      _$PokemonImagesImpl _value, $Res Function(_$PokemonImagesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +121,7 @@ class __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>
     Object? other = freezed,
     Object? versions = freezed,
   }) {
-    return _then(_$PokedexSpritesInDetailImpl(
+    return _then(_$PokemonImagesImpl(
       frontDefault: freezed == frontDefault
           ? _value.frontDefault
           : frontDefault // ignore: cast_nullable_to_non_nullable
@@ -150,17 +145,17 @@ class __$$PokedexSpritesInDetailImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
-  const _$PokedexSpritesInDetailImpl(
-      {required this.frontDefault,
-      required this.backDefault,
-      required final Map<String, dynamic>? other,
-      required final Map<String, dynamic>? versions})
+class _$PokemonImagesImpl implements _PokemonImages {
+  const _$PokemonImagesImpl(
+      {this.frontDefault,
+      this.backDefault,
+      final Map<String, dynamic>? other,
+      final Map<String, dynamic>? versions})
       : _other = other,
         _versions = versions;
 
-  factory _$PokedexSpritesInDetailImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PokedexSpritesInDetailImplFromJson(json);
+  factory _$PokemonImagesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokemonImagesImplFromJson(json);
 
   /// 正面画像URL
   @override
@@ -198,14 +193,14 @@ class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
 
   @override
   String toString() {
-    return 'PokedexSpritesInDetail(frontDefault: $frontDefault, backDefault: $backDefault, other: $other, versions: $versions)';
+    return 'PokemonImages(frontDefault: $frontDefault, backDefault: $backDefault, other: $other, versions: $versions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PokedexSpritesInDetailImpl &&
+            other is _$PokemonImagesImpl &&
             (identical(other.frontDefault, frontDefault) ||
                 other.frontDefault == frontDefault) &&
             (identical(other.backDefault, backDefault) ||
@@ -226,28 +221,26 @@ class _$PokedexSpritesInDetailImpl implements _PokedexSpritesInDetail {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PokedexSpritesInDetailImplCopyWith<_$PokedexSpritesInDetailImpl>
-      get copyWith => __$$PokedexSpritesInDetailImplCopyWithImpl<
-          _$PokedexSpritesInDetailImpl>(this, _$identity);
+  _$$PokemonImagesImplCopyWith<_$PokemonImagesImpl> get copyWith =>
+      __$$PokemonImagesImplCopyWithImpl<_$PokemonImagesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PokedexSpritesInDetailImplToJson(
+    return _$$PokemonImagesImplToJson(
       this,
     );
   }
 }
 
-abstract class _PokedexSpritesInDetail implements PokedexSpritesInDetail {
-  const factory _PokedexSpritesInDetail(
-          {required final String? frontDefault,
-          required final String? backDefault,
-          required final Map<String, dynamic>? other,
-          required final Map<String, dynamic>? versions}) =
-      _$PokedexSpritesInDetailImpl;
+abstract class _PokemonImages implements PokemonImages {
+  const factory _PokemonImages(
+      {final String? frontDefault,
+      final String? backDefault,
+      final Map<String, dynamic>? other,
+      final Map<String, dynamic>? versions}) = _$PokemonImagesImpl;
 
-  factory _PokedexSpritesInDetail.fromJson(Map<String, dynamic> json) =
-      _$PokedexSpritesInDetailImpl.fromJson;
+  factory _PokemonImages.fromJson(Map<String, dynamic> json) =
+      _$PokemonImagesImpl.fromJson;
 
   @override
 
@@ -267,6 +260,6 @@ abstract class _PokedexSpritesInDetail implements PokedexSpritesInDetail {
   Map<String, dynamic>? get versions;
   @override
   @JsonKey(ignore: true)
-  _$$PokedexSpritesInDetailImplCopyWith<_$PokedexSpritesInDetailImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$PokemonImagesImplCopyWith<_$PokemonImagesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
