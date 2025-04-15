@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/application/usecases/pokedex_provider.dart';
 import 'package:pokedex/application/usecases/searched_pokedex_provider.dart';
-import 'package:pokedex/domain/types/pokemon.dart';
+import 'package:pokedex/domain/models/pokedex_entry.dart';
 import 'package:pokedex/ui/widgets/pokedex_list_tile.dart';
 
 class ListPage extends ConsumerStatefulWidget {
@@ -29,7 +29,7 @@ class _ListPageState extends ConsumerState<ListPage> {
   Widget build(BuildContext context) {
     final Widget pokedexTiles = ref.watch(pokedexProvider).when(
           data: (data) {
-            final List<Pokemon?> sortedPokedex =
+            final List<PokedexEntry?> sortedPokedex =
                 ref.watch(extractPokemonsProvider(data));
 
             if (sortedPokedex.isEmpty) return ListView();

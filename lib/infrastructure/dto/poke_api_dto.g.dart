@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokedex_src.dart';
+part of 'poke_api_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PokedexSrcImpl _$$PokedexSrcImplFromJson(Map<String, dynamic> json) =>
-    _$PokedexSrcImpl(
-      count: json['count'] as int,
+_$PokeApiDtoImpl _$$PokeApiDtoImplFromJson(Map<String, dynamic> json) =>
+    _$PokeApiDtoImpl(
+      count: (json['count'] as num).toInt(),
       next: json['next'] as String?,
       previous: json['previous'] as String?,
       results: (json['results'] as List<dynamic>)
@@ -16,7 +16,7 @@ _$PokedexSrcImpl _$$PokedexSrcImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$PokedexSrcImplToJson(_$PokedexSrcImpl instance) =>
+Map<String, dynamic> _$$PokeApiDtoImplToJson(_$PokeApiDtoImpl instance) =>
     <String, dynamic>{
       'count': instance.count,
       'next': instance.next,

@@ -1,10 +1,10 @@
 import 'package:pokedex/domain/repository/repository_interface.dart';
-import 'package:pokedex/domain/types/pokemon.dart';
-import 'package:pokedex/infrastructure/dto/pokedex_src.dart';
+import 'package:pokedex/domain/models/pokedex_entry.dart';
+import 'package:pokedex/infrastructure/dto/poke_api_dto.dart';
 
 class MockPokedexRepository implements IPokedexRepository {
   @override
-  Future<List<Pokemon>> get() async {
+  Future<List<PokedexEntry>> get() async {
     const Map<String, dynamic> responseJson = {
       "count": null,
       "results": [
@@ -18,10 +18,10 @@ class MockPokedexRepository implements IPokedexRepository {
         },
       ],
     };
-    final pokedexDTO = PokedexSrc.fromJson(responseJson);
-    final pokedex = pokedexDTO.results
-        .map((e) => Pokemon(
-              id: e.urlToId(),
+    final pokeApiDto = PokeApiDto.fromJson(responseJson);
+    final pokedex = pokeApiDto.results
+        .map((e) => PokedexEntry(
+              id: e.idFromUrl(),
               name: e.name,
               detailApiUrl: e.detailInfoUrl,
             ))

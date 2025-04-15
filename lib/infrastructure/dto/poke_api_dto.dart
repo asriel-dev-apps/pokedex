@@ -2,13 +2,13 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'pokedex_src.freezed.dart';
-part 'pokedex_src.g.dart';
+part 'poke_api_dto.freezed.dart';
+part 'poke_api_dto.g.dart';
 
-// モデル定義： baseURL/pokemon でリクエストした結果を格納するデータ
+// モデル定義： /pokemon でリクエストした結果を格納するデータ
 @freezed
-class PokedexSrc with _$PokedexSrc {
-  const factory PokedexSrc({
+class PokeApiDto with _$PokeApiDto {
+  const factory PokeApiDto({
     /// 全ポケモン数
     required int count,
 
@@ -20,11 +20,11 @@ class PokedexSrc with _$PokedexSrc {
 
     /// [ポケモン名 と 詳細情報のURL を有する Map<String, String>]
     @JsonKey(name: "results") required List<Result> results,
-  }) = _PokedexSrc;
+  }) = _PokeApiDto;
 
   /// jsonからモデルに変換する factory constructor
-  factory PokedexSrc.fromJson(Map<String, dynamic> json) =>
-      _$PokedexSrcFromJson(json);
+  factory PokeApiDto.fromJson(Map<String, dynamic> json) =>
+      _$PokeApiDtoFromJson(json);
 }
 
 // "results": [
@@ -52,7 +52,7 @@ class Result with _$Result {
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 
   /// url の末尾から id を取得
-  int urlToId() {
+  int idFromUrl() {
     final String idString = detailInfoUrl
         .split("/")
         .reversed

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/ui/router/go_router.dart';
+import 'package:pokedex/ui/router/router.dart';
 import 'package:pokedex/ui/theme/fonts.dart';
 
 /// アプリ本体

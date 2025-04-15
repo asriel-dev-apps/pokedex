@@ -2,8 +2,8 @@ import 'package:pokedex/domain/repository/repository_interface.dart';
 import 'package:pokedex/domain/repository/api_client_interface.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/domain/types/pokemon.dart';
-import 'package:pokedex/infrastructure/dto/pokedex_src.dart';
+import 'package:pokedex/domain/models/pokedex_entry.dart';
+import 'package:pokedex/infrastructure/dto/poke_api_dto.dart';
 
 // PokedexRepositoryProviderのプロバイダー
 /// アプリ起動時 or テスト時に本プロバイダーを override して使用してください
@@ -19,19 +19,20 @@ class PokedexRepository implements IPokedexRepository {
 
   PokedexRepository({required this.pokedexSrcApiClient});
 
-  /// Pokedexを取得
-  ///
-  /// - Cache(DBにデータ)が存在 "する" 場合： Read DB
-  /// - Cache(DBにデータ)が存在 "しない" 場合： Call PokeAPI
   @override
-  Future<List<Pokemon>> get() async {
+  Future<List<PokedexEntry>> get() async {
+    // pathをセット
+    pokedexSrcApiClient.setPath('pokemon/');
+    // クエリパラメータをセット
+    pokedexSrcApiClient.setQuery('limit=1024');
+    // APIを叩く
     final Map<String, dynamic> res = await pokedexSrcApiClient.fetch();
-    final pokedexSrc = PokedexSrc.fromJson(res);
-    print('🐱$pokedexSrc');
-    final results = pokedexSrc.results;
-    final List<Pokemon> pokedex = results
-        .map((e) => Pokemon(
-              id: e.urlToId(),
+    final pokeApiDto = PokeApiDto.fromJson(res);
+    print('🐱$pokeApiDto');
+    final results = pokeApiDto.results;
+    final List<PokedexEntry> pokedex = results
+        .map((e) => PokedexEntry(
+              id: e.idFromUrl(),
               name: e.name,
               detailApiUrl: e.detailInfoUrl,
             ))
@@ -39,6 +40,4 @@ class PokedexRepository implements IPokedexRepository {
 
     return pokedex;
   }
-
-  /// DBにアクセス
 }

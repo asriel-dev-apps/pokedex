@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'pokedex_src.dart';
+part of 'poke_api_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,14 +12,14 @@ part of 'pokedex_src.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-PokedexSrc _$PokedexSrcFromJson(Map<String, dynamic> json) {
-  return _PokedexSrc.fromJson(json);
+PokeApiDto _$PokeApiDtoFromJson(Map<String, dynamic> json) {
+  return _PokeApiDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PokedexSrc {
+mixin _$PokeApiDto {
   /// 全ポケモン数
   int get count => throw _privateConstructorUsedError;
 
@@ -33,17 +33,21 @@ mixin _$PokedexSrc {
   @JsonKey(name: "results")
   List<Result> get results => throw _privateConstructorUsedError;
 
+  /// Serializes this PokeApiDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PokedexSrcCopyWith<PokedexSrc> get copyWith =>
+
+  /// Create a copy of PokeApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PokeApiDtoCopyWith<PokeApiDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PokedexSrcCopyWith<$Res> {
-  factory $PokedexSrcCopyWith(
-          PokedexSrc value, $Res Function(PokedexSrc) then) =
-      _$PokedexSrcCopyWithImpl<$Res, PokedexSrc>;
+abstract class $PokeApiDtoCopyWith<$Res> {
+  factory $PokeApiDtoCopyWith(
+          PokeApiDto value, $Res Function(PokeApiDto) then) =
+      _$PokeApiDtoCopyWithImpl<$Res, PokeApiDto>;
   @useResult
   $Res call(
       {int count,
@@ -53,15 +57,17 @@ abstract class $PokedexSrcCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PokedexSrcCopyWithImpl<$Res, $Val extends PokedexSrc>
-    implements $PokedexSrcCopyWith<$Res> {
-  _$PokedexSrcCopyWithImpl(this._value, this._then);
+class _$PokeApiDtoCopyWithImpl<$Res, $Val extends PokeApiDto>
+    implements $PokeApiDtoCopyWith<$Res> {
+  _$PokeApiDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PokeApiDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,11 +98,11 @@ class _$PokedexSrcCopyWithImpl<$Res, $Val extends PokedexSrc>
 }
 
 /// @nodoc
-abstract class _$$PokedexSrcImplCopyWith<$Res>
-    implements $PokedexSrcCopyWith<$Res> {
-  factory _$$PokedexSrcImplCopyWith(
-          _$PokedexSrcImpl value, $Res Function(_$PokedexSrcImpl) then) =
-      __$$PokedexSrcImplCopyWithImpl<$Res>;
+abstract class _$$PokeApiDtoImplCopyWith<$Res>
+    implements $PokeApiDtoCopyWith<$Res> {
+  factory _$$PokeApiDtoImplCopyWith(
+          _$PokeApiDtoImpl value, $Res Function(_$PokeApiDtoImpl) then) =
+      __$$PokeApiDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,13 +113,15 @@ abstract class _$$PokedexSrcImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PokedexSrcImplCopyWithImpl<$Res>
-    extends _$PokedexSrcCopyWithImpl<$Res, _$PokedexSrcImpl>
-    implements _$$PokedexSrcImplCopyWith<$Res> {
-  __$$PokedexSrcImplCopyWithImpl(
-      _$PokedexSrcImpl _value, $Res Function(_$PokedexSrcImpl) _then)
+class __$$PokeApiDtoImplCopyWithImpl<$Res>
+    extends _$PokeApiDtoCopyWithImpl<$Res, _$PokeApiDtoImpl>
+    implements _$$PokeApiDtoImplCopyWith<$Res> {
+  __$$PokeApiDtoImplCopyWithImpl(
+      _$PokeApiDtoImpl _value, $Res Function(_$PokeApiDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PokeApiDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,7 +130,7 @@ class __$$PokedexSrcImplCopyWithImpl<$Res>
     Object? previous = freezed,
     Object? results = null,
   }) {
-    return _then(_$PokedexSrcImpl(
+    return _then(_$PokeApiDtoImpl(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -145,16 +153,16 @@ class __$$PokedexSrcImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PokedexSrcImpl implements _PokedexSrc {
-  const _$PokedexSrcImpl(
+class _$PokeApiDtoImpl implements _PokeApiDto {
+  const _$PokeApiDtoImpl(
       {required this.count,
       this.next,
       this.previous,
       @JsonKey(name: "results") required final List<Result> results})
       : _results = results;
 
-  factory _$PokedexSrcImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PokedexSrcImplFromJson(json);
+  factory _$PokeApiDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokeApiDtoImplFromJson(json);
 
   /// 全ポケモン数
   @override
@@ -182,14 +190,14 @@ class _$PokedexSrcImpl implements _PokedexSrc {
 
   @override
   String toString() {
-    return 'PokedexSrc(count: $count, next: $next, previous: $previous, results: $results)';
+    return 'PokeApiDto(count: $count, next: $next, previous: $previous, results: $results)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PokedexSrcImpl &&
+            other is _$PokeApiDtoImpl &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.next, next) || other.next == next) &&
             (identical(other.previous, previous) ||
@@ -197,56 +205,60 @@ class _$PokedexSrcImpl implements _PokedexSrc {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PokeApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PokedexSrcImplCopyWith<_$PokedexSrcImpl> get copyWith =>
-      __$$PokedexSrcImplCopyWithImpl<_$PokedexSrcImpl>(this, _$identity);
+  _$$PokeApiDtoImplCopyWith<_$PokeApiDtoImpl> get copyWith =>
+      __$$PokeApiDtoImplCopyWithImpl<_$PokeApiDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PokedexSrcImplToJson(
+    return _$$PokeApiDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _PokedexSrc implements PokedexSrc {
-  const factory _PokedexSrc(
+abstract class _PokeApiDto implements PokeApiDto {
+  const factory _PokeApiDto(
           {required final int count,
           final String? next,
           final String? previous,
           @JsonKey(name: "results") required final List<Result> results}) =
-      _$PokedexSrcImpl;
+      _$PokeApiDtoImpl;
 
-  factory _PokedexSrc.fromJson(Map<String, dynamic> json) =
-      _$PokedexSrcImpl.fromJson;
-
-  @override
+  factory _PokeApiDto.fromJson(Map<String, dynamic> json) =
+      _$PokeApiDtoImpl.fromJson;
 
   /// 全ポケモン数
-  int get count;
   @override
+  int get count;
 
   /// 次ページのURL
-  String? get next;
   @override
+  String? get next;
 
   /// 前ページのURL
-  String? get previous;
   @override
+  String? get previous;
 
   /// [ポケモン名 と 詳細情報のURL を有する Map<String, String>]
+  @override
   @JsonKey(name: "results")
   List<Result> get results;
+
+  /// Create a copy of PokeApiDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$PokedexSrcImplCopyWith<_$PokedexSrcImpl> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PokeApiDtoImplCopyWith<_$PokeApiDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -260,8 +272,12 @@ mixin _$Result {
   @JsonKey(name: "url")
   String get detailInfoUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResultCopyWith<Result> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -283,6 +299,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -320,6 +338,8 @@ class __$$ResultImplCopyWithImpl<$Res>
       _$ResultImpl _value, $Res Function(_$ResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -361,7 +381,7 @@ class _$ResultImpl extends _Result {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResultImpl &&
@@ -370,11 +390,13 @@ class _$ResultImpl extends _Result {
                 other.detailInfoUrl == detailInfoUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, detailInfoUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
@@ -402,8 +424,11 @@ abstract class _Result extends Result {
   @override
   @JsonKey(name: "url")
   String get detailInfoUrl;
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -16,13 +16,6 @@ class PokedexSrcApiClient implements ApiClientInterface {
     // 全ポケモン名を取得できるAPIを叩く
     // https://pokeapi.co/api/v2/pokemon?limit=649
     try {
-      // pathをセット
-      setPath('pokemon/');
-
-      // クエリパラメータをセット
-      // ただし、BWまでしかgifアイコンがないため今回は No.649 までとした
-      setQuery('limit=1024');
-
       // PokeApiを呼ぶ
       final url = getUrlFullPath();
       final response = await http.get(Uri.parse(url));
