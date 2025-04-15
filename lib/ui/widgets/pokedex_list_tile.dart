@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/domain/types/pokemon.dart';
-import 'package:pokedex/ui/router/go_router.dart';
-import 'package:pokedex/ui/router/page_path.dart';
+import 'package:pokedex/core/util.dart';
+import 'package:pokedex/domain/models/pokedex_entry.dart';
+import 'package:pokedex/ui/router/router.dart';
+import 'package:pokedex/ui/router/app_pages.dart';
 
 class PokedexListTile extends ConsumerWidget {
-  final Pokemon pokemon;
+  final PokedexEntry pokemon;
 
   const PokedexListTile({super.key, required this.pokemon});
-
-  // id を No.OOOO のような文字列に変換
-  String idToLocaleString(int id) {
-    final int n = 4 - id.toString().length;
-    return "No.${"0" * n}$id";
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +18,8 @@ class PokedexListTile extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         final router = ref.read(goRouterProvider);
-        router.pushNamed(PageId.detail.routeName, extra: pokemon);
+        print('🐱🐱${pokemon.id}');
+        router.push('${AppPages.pokedex.path}/${pokemon.id}');
       },
       child: Stack(
         alignment: Alignment.center,
@@ -51,7 +47,7 @@ class PokedexListTile extends ConsumerWidget {
             child: Align(
               alignment: const Alignment(-0.4, 0.0),
               child: Text(
-                idToLocaleString(pokemon.id),
+                Util.idToLocaleString(pokemon.id),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 12,

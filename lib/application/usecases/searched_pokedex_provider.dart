@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/domain/types/pokemon.dart';
+import 'package:pokedex/domain/models/pokedex_entry.dart';
 
 final extractPokemonsProvider =
-    StateProvider.family<List<Pokemon>, List<Pokemon>>((ref, pokedex) {
+    StateProvider.family<List<PokedexEntry>, List<PokedexEntry>>(
+        (ref, pokedex) {
   // 検索結果を格納するリスト
-  List<Pokemon> fuzzySearchedPokedex = [];
+  List<PokedexEntry> fuzzySearchedPokedex = [];
 
   // 入力された文字列
   // 空文字の場合：contains()メソッドは常にTrueとなり、全ての要素が返る
@@ -15,7 +16,7 @@ final extractPokemonsProvider =
   fuzzySearchedPokedex =
       pokedex.where((e) => e.name.contains(regNotSensitive)).toList();
 
-  // ファジーサーチにヒットしたList<Pokemon>をソートして返す
+  // ファジーサーチにヒットしたList<PokedexEntry>をソートして返す
   final sortType = ref.watch(pokedexSrcSortTypeProvider);
   switch (sortType) {
     case SortType.idASC:

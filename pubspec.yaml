@@ -18,9 +18,10 @@ dependencies:
   path_provider: ^2.1.1
   fraction: ^5.0.2
   video_editor: ^3.0.0
-  ffmpeg_kit_flutter: ^6.0.3
   sqflite: ^2.3.0
   path: ^1.8.3
+  just_audio: ^0.9.46
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

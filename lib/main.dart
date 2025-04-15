@@ -6,7 +6,7 @@ import 'package:pokedex/infrastructure/api/pokedex_api_client.dart';
 import 'package:pokedex/infrastructure/repository/mock_pokedex_repository.dart';
 import 'package:pokedex/infrastructure/repository/pokedex_repository.dart';
 
-import 'package:pokedex/ui/router/app.dart';
+import 'package:pokedex/app.dart';
 
 void main() {
   const app = App();
