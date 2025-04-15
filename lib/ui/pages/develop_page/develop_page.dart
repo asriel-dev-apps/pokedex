@@ -1,70 +1,78 @@
-import 'dart:convert';
+import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/domain/types/pokedex_detail.dart';
-// import 'package:pokedex/ui/widgets/custom_list.dart';
+import 'package:pokedex/ui/pages/develop_page/develop_page_2.dart';
 
-class DevelopPage extends ConsumerStatefulWidget {
+class DevelopPage extends StatelessWidget {
   const DevelopPage({super.key});
 
-  @override
-  DevelopPageState createState() => DevelopPageState();
-}
+  List<String> generatePokemonImageUrls({int count = 100, int max = 1000}) {
+    final baseUrl =
+        // 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+    final random = Random();
+    final Set<int> numbers = {};
 
-class DevelopPageState extends ConsumerState<DevelopPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  Future<List<Widget>> fetchPokeAPI() async {
-    List<Widget> listTiles = [];
-
-    try {
-      for (int i = 1; i <= 3; i++) {
-        // stub json to Map<String, dynamic>
-        String jsonString =
-            await rootBundle.loadString('assets/json/pokemon_$i.json');
-
-        final decodedBody = json.decode(jsonString);
-
-        // PokemonInfoをリストで持つ
-        PokedexDetail pokemon = PokedexDetail.fromJson(decodedBody);
-        debugPrint("🍎$pokemon");
-        // リストタイルを作成
-        // listTiles.add(CustomListTile(pokemon: pokemon));
-      }
-    } catch (e) {
-      debugPrint("🐸$e");
+    // 重複なしでcount個のランダムな数字を生成（0〜max-1）
+    while (numbers.length < count) {
+      numbers.add(random.nextInt(max));
     }
 
-    return listTiles;
+    return numbers.map((number) => '$baseUrl$number.png').toList();
   }
 
   @override
   Widget build(BuildContext context) {
+    final imageUrls = generatePokemonImageUrls();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('開発ページ'),
+      body: SafeArea(
+        child: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: imageUrls.length,
+          itemBuilder: (context, index) {
+            final imageUrl = imageUrls[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => DevelopPage2(imageUrl: imageUrl),
+                  ),
+                );
+              },
+              child: Hero(
+                tag: imageUrl,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.blueGrey, // 枠線の色
+                          width: 0.5, // 枠線の太さ
+                        ),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl,
+                        placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(strokeWidth: 2)),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                        fit: BoxFit.cover,
+                      ),
+                    )),
+              ),
+            );
+          },
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 3,
+            crossAxisSpacing: 3,
+            childAspectRatio: 1.0,
+          ),
+        ),
       ),
-      backgroundColor: const Color.fromARGB(255, 246, 124, 86),
-      body: FutureBuilder(
-          future: fetchPokeAPI(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final listTiles = snapshot.data;
-              return ListView.builder(
-                itemCount: listTiles!.length,
-                itemBuilder: (BuildContext context, int i) {
-                  return listTiles[i];
-                },
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
     );
   }
 }
